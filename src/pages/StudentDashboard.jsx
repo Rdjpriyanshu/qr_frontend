@@ -26,7 +26,7 @@ export default function StudentDashboard() {
 
   // Socket.IO for real-time session notifications
   useEffect(() => {
-    const socket = io('http://localhost:5000');
+    const socket = io('https://qr-backend-9g7m.onrender.com');
 
     socket.on('new-session', (session) => {
       setNotification(session);
@@ -39,7 +39,7 @@ export default function StudentDashboard() {
 
   const fetchAttendance = async () => {
     try {
-      const res = await fetch('/api/student/attendance', { headers });
+      const res = await fetch('https://qr-backend-9g7m.onrender.com/api/student/attendance', { headers });
       const data = await res.json();
       if (res.ok) setAttendance(data.attendance);
     } catch (err) {
@@ -54,7 +54,7 @@ export default function StudentDashboard() {
     setMessage(null);
 
     try {
-      const res = await fetch('/api/student/mark-attendance', {
+      const res = await fetch('https://qr-backend-9g7m.onrender.com/api/student/mark-attendance', {
         method: 'POST',
         headers,
         body: JSON.stringify({ sessionCode: sessionCode.trim().toUpperCase() })

@@ -30,7 +30,7 @@ export default function TeacherDashboard() {
 
   // Socket.IO for real-time attendance updates
   useEffect(() => {
-    const socket = io('http://localhost:5000');
+    const socket = io('https://qr-backend-9g7m.onrender.com');
     
     socket.on('attendance-marked', (data) => {
       if (activeSession && data.sessionId === activeSession.id) {
@@ -70,7 +70,7 @@ export default function TeacherDashboard() {
 
   const fetchSessions = async () => {
     try {
-      const res = await fetch('/api/teacher/sessions', { headers });
+      const res = await fetch('https://qr-backend-9g7m.onrender.com/api/teacher/sessions', { headers });
       const data = await res.json();
       if (res.ok) setSessions(data.sessions);
     } catch (err) {
@@ -86,7 +86,7 @@ export default function TeacherDashboard() {
 
     setLoading(true);
     try {
-      const res = await fetch('/api/teacher/session', {
+      const res = await fetch('https://qr-backend-9g7m.onrender.com/api/teacher/session', {
         method: 'POST',
         headers,
         body: JSON.stringify({ subject: subject.trim(), durationMinutes: parseInt(duration) })
@@ -112,7 +112,7 @@ export default function TeacherDashboard() {
 
   const viewAttendance = async (sessionId) => {
     try {
-      const res = await fetch(`/api/teacher/session/${sessionId}/attendance`, { headers });
+      const res = await fetch(`https://qr-backend-9g7m.onrender.com/api/teacher/session/${sessionId}/attendance`, { headers });
       const data = await res.json();
       if (res.ok) {
         setViewingSession(data.session);
@@ -126,7 +126,7 @@ export default function TeacherDashboard() {
 
   const exportExcel = async (sessionId) => {
     try {
-      const res = await fetch(`/api/teacher/session/${sessionId}/export`, {
+      const res = await fetch(`https://qr-backend-9g7m.onrender.com/api/teacher/session/${sessionId}/export`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       

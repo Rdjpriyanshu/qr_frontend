@@ -29,7 +29,7 @@ export default function Register() {
     setLoading(true);
 
     try {
-      const res = await fetch('/api/auth/register', {
+      const res = await fetch('https://qr-backend-9g7m.onrender.com/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password, role })
